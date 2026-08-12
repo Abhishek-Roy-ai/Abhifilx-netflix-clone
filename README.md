@@ -155,6 +155,46 @@ npm run dev:frontend
 
 ---
 
+## 🐳 Docker Deployment
+
+You can run the entire Abhiflix application (Frontend + Backend) using Docker and Docker Compose.
+
+### **Option 1: Quick Start with Docker Compose (Recommended)**
+
+Run the following command from the project root:
+
+```bash
+docker compose up --build -d
+```
+
+- 🌐 **Frontend (Nginx):** `http://localhost` (or `http://localhost:5173`)
+- 🌐 **Backend API:** `http://localhost:5000`
+- 💾 **Data Persistence:** Database changes (`backend/data/db.json`) are automatically persisted via Docker volume mounts.
+
+To stop the containers:
+```bash
+docker compose down
+```
+
+---
+
+### **Option 2: Build & Run Individual Containers**
+
+#### **Backend Image**
+```bash
+docker build -t netflix-backend ./backend
+docker run -d -p 5000:5000 --name abhiflix-backend netflix-backend
+```
+
+#### **Frontend Image**
+```bash
+docker build -t netflix-frontend ./frontend
+docker run -d -p 80:80 --name abhiflix-frontend netflix-frontend
+```
+
+---
+
+
 ## 📡 API Overview
 
 | Endpoint | Method | Description |
